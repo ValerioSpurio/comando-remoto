@@ -1,1 +1,32 @@
-off
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Comando Rover ON/OFF</title>
+</head>
+<body>
+  <h1>Comando Rover ON/OFF</h1>
+  <p>Per cambiare lo stato, modifica il file <code>comando.txt</code> nel repository.</p>
+  <p>Contenuto attuale del file:</p>
+  <pre id="comando">Caricamento...</pre>
+  <button onclick="setComando('on')">ON</button>
+  <button onclick="setComando('off')">OFF</button>
+
+  <script>
+    const urlComando = 'https://raw.githubusercontent.com/ValerioSpurio/comando-remoto/main/comando.txt';
+
+    async function fetchComando() {
+      const res = await fetch(urlComando);
+      const text = await res.text();
+      document.getElementById('comando').textContent = text.trim();
+    }
+
+    async function setComando(value) {
+      alert('Per cambiare il comando, devi modificare manualmente il file comando.txt su GitHub.');
+      // Senza backend non si può scrivere direttamente su GitHub
+    }
+
+    fetchComando();
+  </script>
+</body>
+</html>
